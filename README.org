@@ -1,0 +1,44 @@
+* 项目简介
+- 运行在 ESP-IDF 环境中的 Simple FOC 示例
+- 通过修改 Arduino AVR Core, 提供一个基于 ESP-IDF 的 Arduino API 环境, 以运行 Simple FOC
+** 项目进度
+*** 已实现
+- SPI 传感器读取
+- I2C 传感器读取
+- BLDC 扭矩(电压)控制
+*** 未实现
+- 电流采样
+- 编码器
+* Modules 源码说明
+** Arduino-FOC-2.2
+- Simple FOC 源码, 为在 ESP-IDF 中正常编译, 略有改动
+** ArduinoCore-avr-1.8.7
+- Arduino AVR Core 源码, 部分替换为 ESP-IDF, 提供一个基于 ESP-IDF 的 Arduino API 环境
+* 硬件与软件
+** 硬件
+- ESP32
+- AS5600
+- MT6701
+- BLDC
+- Simple FOC mini
+** 软件
+- VSCode
+  - ESP-IDF Extension for VS Code
+* 项目说明
+** 硬件初始化
+- Arduino 兼容层移植了部分初始化功能
+** ESP-IDF 硬件资源
+*** LEDC
+*** UART
+- 用于 Simple FOC Commander
+*** SPI
+- 用于 SPI 传感器
+- 建议使用 SPI 传感器
+- Simple FOC 的传感器数据解算设置可能需要根据实际调整
+*** I2C
+- 用于 I2C 传感器
+- 不建议使用 I2C 传感器
+*** GPIO
+- Arduino_interface.h
+** freeRTOS
+- 启用了 freeRTOS, 需要替换 freeRTOS 路径为本机路径
