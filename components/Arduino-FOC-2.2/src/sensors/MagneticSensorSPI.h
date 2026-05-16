@@ -41,8 +41,8 @@ class MagneticSensorSPI : public Sensor {
     MagneticSensorSPI(MagneticSensorSPIConfig_s config, int cs);
 
     /** sensor initialise pins */
-    using Sensor::init;
-    void init(SPIClass *_spi = &SPI);
+    void init() override { init(&SPI); };
+    void init(SPIClass *_spi);
 
     // implementation of abstract functions of the Sensor class
     /** get current angle (rad) */

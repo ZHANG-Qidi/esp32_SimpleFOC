@@ -17,8 +17,7 @@ void doTarget(char* cmd) { command.scalar(&target_voltage, cmd); }
 
 void setup(void) {
     // initialise magnetic sensor hardware
-    // sensor.init(&Wire);
-    sensor.init(&SPI);
+    sensor.init();
     // link the motor to the sensor
     motor.linkSensor(&sensor);
 
