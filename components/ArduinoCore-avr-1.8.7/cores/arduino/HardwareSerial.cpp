@@ -183,7 +183,11 @@ void HardwareSerial::end() {
     _rx_buffer_head = _rx_buffer_tail;
 }
 */
-void HardwareSerial::end() {}
+void HardwareSerial::end() {
+    if (uart_is_driver_installed(UART_MASTER_NUM)) {
+        uart_driver_delete(UART_MASTER_NUM);
+    }
+}
 
 /*
 int HardwareSerial::available(void) { return ((unsigned int)(SERIAL_RX_BUFFER_SIZE + _rx_buffer_head - _rx_buffer_tail)) % SERIAL_RX_BUFFER_SIZE; }
@@ -194,6 +198,7 @@ int HardwareSerial::available(void) {
     return available;
 }
 
+/*
 int HardwareSerial::peek(void) {
     if (_rx_buffer_head == _rx_buffer_tail) {
         return -1;
@@ -201,6 +206,8 @@ int HardwareSerial::peek(void) {
         return _rx_buffer[_rx_buffer_tail];
     }
 }
+*/
+int HardwareSerial::peek(void) { return 1; }
 
 /*
 int HardwareSerial::read(void) {
@@ -222,6 +229,7 @@ int HardwareSerial::read(void) {
     return -1;
 }
 
+/*
 int HardwareSerial::availableForWrite(void) {
     tx_buffer_index_t head;
     tx_buffer_index_t tail;
@@ -233,6 +241,8 @@ int HardwareSerial::availableForWrite(void) {
     if (head >= tail) return SERIAL_TX_BUFFER_SIZE - 1 - head + tail;
     return tail - head - 1;
 }
+*/
+int HardwareSerial::availableForWrite(void) { return 1; }
 
 /*
 void HardwareSerial::flush() {

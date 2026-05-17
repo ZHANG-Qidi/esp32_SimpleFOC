@@ -13,7 +13,7 @@ BLDCDriver3PWM driver = BLDCDriver3PWM(MOTOR_A, MOTOR_B, MOTOR_C, MOTOR_EN);
 float target_voltage = 2;
 // instantiate the commander
 Commander command = Commander(Serial);
-void doTarget(char* cmd) { command.scalar(&target_voltage, cmd); }
+void doTarget(char *cmd) { command.scalar(&target_voltage, cmd); }
 
 void setup(void) {
     // initialise magnetic sensor hardware
@@ -44,7 +44,7 @@ void setup(void) {
     motor.initFOC();
 
     // add target command T
-    command.add('T', doTarget, (char*) "target voltage");
+    command.add('T', doTarget, (char *)"target voltage");
 
     Serial.println(F("Motor ready."));
     Serial.println(F("Set the target voltage using serial terminal:"));

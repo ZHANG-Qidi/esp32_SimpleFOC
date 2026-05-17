@@ -13,6 +13,7 @@
 
 #include "SPI.h"
 
+#include "driver/gpio.h"
 #include "driver/spi_master.h"
 
 SPIClass SPI;
@@ -84,6 +85,7 @@ void SPIClass::begin() {
     spi_bus_add_device(SPI_MASTER_NUM, &devcfg, &mt6701);
 }
 
+/*
 void SPIClass::end() {
     uint8_t sreg = SREG;
     noInterrupts();  // Protect from a scheduler and prevent transactionBegin
@@ -98,6 +100,15 @@ void SPIClass::end() {
 #endif
     }
     SREG = sreg;
+}
+*/
+void SPIClass::end() {
+    spi_bus_remove_device(mt6701);
+    spi_bus_free(SPI_MASTER_NUM);
+    gpio_reset_pin((gpio_num_t)SPI_MASTER_MOSI_IO);
+    gpio_reset_pin((gpio_num_t)SPI_MASTER_MISO_IO);
+    gpio_reset_pin((gpio_num_t)SPI_MASTER_SCLK_IO);
+    gpio_reset_pin((gpio_num_t)SPI_MASTER_CS_IO);
 }
 
 // mapping of interrupt numbers to bits within SPI_AVR_EIMSK

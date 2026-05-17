@@ -108,5 +108,4 @@ void _configure3PWM(long pwm_frequency, const int pinA, const int pinB, const in
     analogWriteInit(pinA);
     analogWriteInit(pinB);
     analogWriteInit(pinC);
-    return;
 }
