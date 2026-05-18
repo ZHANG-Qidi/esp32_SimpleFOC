@@ -1,5 +1,11 @@
 #include "SimpleFOC.h"
 
+#define MOTOR_U (CONFIG_FOC_MOTOR_U)
+#define MOTOR_V (CONFIG_FOC_MOTOR_V)
+#define MOTOR_W (CONFIG_FOC_MOTOR_W)
+#define MOTOR_EN (CONFIG_FOC_MOTOR_EN)
+#define COMMANDER_BAUD_RATE (CONFIG_ARDUINO_UART_BAUD_RATE)
+
 // magnetic sensor instance - SPI
 MagneticSensorSPI sensor = MagneticSensorSPI(AS5147_SPI, SPI_MASTER_CS_IO);
 // magnetic sensor instance - MagneticSensorI2C
@@ -7,7 +13,7 @@ MagneticSensorSPI sensor = MagneticSensorSPI(AS5147_SPI, SPI_MASTER_CS_IO);
 
 // BLDC motor & driver instance
 BLDCMotor motor = BLDCMotor(7);
-BLDCDriver3PWM driver = BLDCDriver3PWM(MOTOR_A, MOTOR_B, MOTOR_C, MOTOR_EN);
+BLDCDriver3PWM driver = BLDCDriver3PWM(MOTOR_U, MOTOR_V, MOTOR_W, MOTOR_EN);
 
 // voltage set point variable
 float target_voltage = 2;
@@ -34,7 +40,7 @@ void setup(void) {
     motor.controller = MotionControlType::torque;
 
     // use monitoring with serial
-    Serial.begin(115200);
+    Serial.begin(COMMANDER_BAUD_RATE);
     // comment out if not needed
     motor.useMonitoring(Serial);
 
