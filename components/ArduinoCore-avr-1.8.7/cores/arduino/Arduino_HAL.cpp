@@ -139,7 +139,7 @@ void _configure3PWM(long pwm_frequency, const int pinA, const int pinB, const in
 
 #else
 
-#define FOC_PWM_TIMER_RESOLUTION_HZ (FOC_MCPWM_TIMER_RESOLUTION_HZ / FOC_MCPWM_PERIOD)
+#define FOC_PWM_TIMER_FREQ_HZ (FOC_MCPWM_TIMER_RESOLUTION_HZ / FOC_MCPWM_PERIOD)
 
 void analogWrite(uint8_t pin, int value) {
     if (value < 0) value = 0;
@@ -157,7 +157,7 @@ void analogWriteInit(uint8_t pin) {
         timer.speed_mode = LEDC_LOW_SPEED_MODE;
         timer.duty_resolution = LEDC_TIMER_8_BIT;
         timer.timer_num = LEDC_TIMER_0;
-        timer.freq_hz = FOC_PWM_TIMER_RESOLUTION_HZ;
+        timer.freq_hz = FOC_PWM_TIMER_FREQ_HZ;
         timer.clk_cfg = LEDC_AUTO_CLK;
         ESP_ERROR_CHECK(ledc_timer_config(&timer));
 
