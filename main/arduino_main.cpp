@@ -33,7 +33,7 @@ void setup(void) {
     motor.linkDriver(&driver);
 
     // aligning voltage
-    motor.voltage_sensor_align = 5;
+    motor.voltage_sensor_align = 1;
     // choose FOC modulation (optional)
     motor.foc_modulation = FOCModulationType::SpaceVectorPWM;
     // set motion control loop to be used
