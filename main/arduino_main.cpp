@@ -64,7 +64,7 @@ void setup(void) {
 #include "arduino_main.h"
 
 void loop(void) {
-    int64_t start = esp_timer_get_time();
+    uint32_t start = micros();
 
     // main FOC algorithm function
     // the faster you run this function the better
@@ -81,7 +81,7 @@ void loop(void) {
     // user communication
     command.run();
 
-    int64_t end = esp_timer_get_time();
+    uint32_t end = micros();
     int duration = end - start;
 
     static int dividerCounter;

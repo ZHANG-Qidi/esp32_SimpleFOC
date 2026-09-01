@@ -2,3 +2,4 @@ CompileFlags:
     Remove: [-f*, -m*]
 Diagnostics:
     UnusedIncludes: None
+    Suppress: ["pp_file_not_found", "undeclared_var_use"]
