@@ -6,7 +6,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-
 TaskHandle_t app_main_handle;
 
 static bool example_timer_on_alarm_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_ctx) {

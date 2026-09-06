@@ -1,8 +1,8 @@
 #include <cstdio>
 
 #include "SimpleFOC.h"
-#include "esp_timer.h"
 #include "driver/gptimer.h"
+#include "esp_timer.h"
 
 #define MOTOR_U (CONFIG_FOC_MOTOR_U)
 #define MOTOR_V (CONFIG_FOC_MOTOR_V)
